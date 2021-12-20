@@ -48,18 +48,16 @@ export class SignupComponent implements OnInit {
    * getCountries
    */
   public getCountries() {
-    this.api
-      .httpGet('countries')
-      .subscribe((response: any) => {
-        console.log('response ===>', response);
-        this.commonService.hideSpinner();
-        if (response && response.code === 200) {
-          this.ddpValues = response.data;
-          }
-      });
+    this.api.httpGet('countries').subscribe((response: any) => {
+      console.log('response ===>', response);
+      this.commonService.hideSpinner();
+      if (response && response.code === 200) {
+        this.ddpValues = response.data;
+      }
+    });
   }
 
-  public onSubmit() {
+  /*   public onSubmit() {
     this.api.httpGet('user/mnemonics').subscribe((response: any) => {
       this.commonService.hideSpinner();
       if (response && response.code === 200) {
@@ -87,7 +85,29 @@ export class SignupComponent implements OnInit {
         }
       }
     });
+  } */
+
+  public onSubmit() {
+    if (this.form.valid) {
+      console.log('form values ===>', this.form.value);
+      localStorage.setItem('username', this.formControl.username.value);
+      this.api
+        .httpPost('user/signup', this.form.value)
+        .subscribe((response: any) => {
+          this.commonService.hideSpinner();
+          if (response && response.code === 200) {
+            this.commonService.successToast(
+              'success',
+              'Email Sent Successfully!'
+            );
+            this.router.navigate(['/verification']);
+          } else {
+            this.commonService.failureToast('Error', response.message);
+          }
+        });
+    }
   }
+
   get formControl() {
     return this.form.controls;
   }
