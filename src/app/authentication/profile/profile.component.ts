@@ -125,4 +125,9 @@ export class ProfileComponent implements OnInit {
   public navigateToPoint(route: string) {
     this.router.navigate([route]);
   }
+
+
+  public userbalance() {
+    this.router.navigate(['/userbalance']);
+  }
 }

@@ -1,4 +1,12 @@
 table{
-  width: 73%;
+  width: 90%;
   align-self: center;
+}
+.nav-item{
+  span{
+    color: white;
+  }
+  span:hover{
+    cursor: pointer;
+  }
 }

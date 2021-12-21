@@ -11,6 +11,7 @@ import { EmailVerificationComponent } from './email-verification/email-verificat
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { UserBalanceComponent } from './userbalance/userbalance.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserBalanceComponent } from './userbalance/userbalance.component';
     EmailVerificationComponent,
     ChangePasswordComponent,
     SetPasswordComponent,
-    UserBalanceComponent
+    UserBalanceComponent,
+    AdminLoginComponent
   ],
   imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],

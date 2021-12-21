@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminLoginComponent } from './authentication/admin-login/admin-login.component';
 import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 import { EmailVerificationComponent } from './authentication/email-verification/email-verification.component';
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
@@ -47,6 +48,10 @@ const routes: Routes = [
   {
     path: 'userbalance',
     component: UserBalanceComponent,
+  },
+  {
+    path: 'admin/login',
+    component: AdminLoginComponent,
   },
 ];
 
