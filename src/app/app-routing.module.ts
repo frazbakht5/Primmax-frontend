@@ -7,6 +7,7 @@ import { ProfileComponent } from './authentication/profile/profile.component';
 import { SetPasswordComponent } from './authentication/set-password/set-password.component';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { UserBalanceComponent } from './authentication/userbalance/userbalance.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+  },
+  {
+    path: 'userbalance',
+    component: UserBalanceComponent,
   },
 ];
 

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmailVerificationComponent } from './email-verification/email-verification.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { UserBalanceComponent } from './userbalance/userbalance.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SetPasswordComponent } from './set-password/set-password.component';
     EmailVerificationComponent,
     ChangePasswordComponent,
     SetPasswordComponent,
+    UserBalanceComponent
   ],
   imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
