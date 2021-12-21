@@ -28,8 +28,7 @@ export class SignupComponent implements OnInit {
       dob: ['', { validators: [Validators.required] }],
       gender: ['', { validators: [Validators.required] }],
       country: ['', { validators: [Validators.required] }],
-      referral_id: ['', { validators: [Validators.required] }],
-      mnemonic_pass_phrase: [''],
+      referral_id_used: ['', { validators: [Validators.required] }],
     });
     this.getCountries();
   }

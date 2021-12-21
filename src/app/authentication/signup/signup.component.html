@@ -262,17 +262,17 @@
                           <label>Referral ID</label>
                           <input
                             class="form-control"
-                            placeholder="Enter your Referral Id"
+                            placeholder="Enter Referral Id"
                             type="text"
-                            formControlName="referral_id"
+                            formControlName="referral_id_used"
                           />
                           <span>
                             <div
                               class="text-danger"
                               *ngIf="
-                                formControl.referral_id.errors?.required &&
-                                (formControl.referral_id.dirty ||
-                                  formControl.referral_id.touched)
+                                formControl.referral_id_used.errors?.required &&
+                                (formControl.referral_id_used.dirty ||
+                                  formControl.referral_id_used.touched)
                               "
                             >
                               Required
