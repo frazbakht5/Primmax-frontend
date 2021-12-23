@@ -37,6 +37,10 @@ export class UserBalanceComponent implements OnInit {
     this.router.navigate(['/userbalance']);
   }
 
+  public profile() {
+    this.router.navigate(['/profile']);
+  }
+
   changeFn(event: any) {
     this.userBalance = event.target.value;
   }
@@ -67,13 +71,23 @@ export class UserBalanceComponent implements OnInit {
       })
       .subscribe((response: any) => {
         if (response && response.code === 200) {
+          // console.log("🚀 ~ file: userbalance.component.ts ~ line 70 ~ UserBalanceComponent ~ .subscribe ~ response", response)
+          const { data } = response;
+          let id = data[1][0]?.id
+          let balance = data[1][0]?.balance
+          this.UserData = this.UserData.map((item:any)=>this.updateArray(item, id, balance));
           this.commonService.hideSpinner();
-          this.getUserData()
         } else {
           this.commonService.failureToast('error', response.message);
           this.commonService.hideSpinner();
         }
       });
+  }
+
+  updateArray(p: any, id:any, balance:any){
+    return p.id === id
+    ? { ...p, balance: balance}
+    : p;
   }
 
   subBalance(row: any) {
@@ -87,8 +101,11 @@ export class UserBalanceComponent implements OnInit {
       })
       .subscribe((response: any) => {
         if (response && response.code === 200) {
+          const { data } = response;
+          let id = data[1][0]?.id
+          let balance = data[1][0]?.balance
+          this.UserData = this.UserData.map((item:any)=>this.updateArray(item, id, balance));
           this.commonService.hideSpinner();
-          this.getUserData()
         } else {
           this.commonService.failureToast('error', response.message);
           this.commonService.hideSpinner();

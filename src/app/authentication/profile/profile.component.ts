@@ -13,6 +13,7 @@ import * as moment from 'moment';
 export class ProfileComponent implements OnInit {
   public form: FormGroup;
   public isEdit = false;
+  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
 
   constructor(
     private router: Router,
@@ -129,5 +130,9 @@ export class ProfileComponent implements OnInit {
 
   public userbalance() {
     this.router.navigate(['/userbalance']);
+  }
+
+  public kyc() {
+    this.router.navigate(['/kyc']);
   }
 }

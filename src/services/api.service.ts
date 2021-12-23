@@ -3,14 +3,14 @@ import { HttpClient } from '@angular/common/http';
 // import { environment } from '../../../../../environments/environment';
 
 const environment = {
-    apiUrl:'http://54.198.183.160:5000/api/'
+  apiUrl: 'http://54.198.183.160:5000/api/',
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * @method httpGetWithUrl

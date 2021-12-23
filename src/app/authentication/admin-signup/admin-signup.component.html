@@ -1,0 +1,331 @@
+<div class="main-body leftmenu">
+  <!-- Page -->
+  <div class="page main-signin-wrapper">
+    <!-- Row -->
+    <div class="row signpages text-center">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="row row-sm">
+            <div
+              class="
+                col-lg-5 col-xl-4
+                d-none d-lg-block
+                text-center
+                bg-primary
+                details
+              "
+            >
+              <div class="mt-5 pt-5 p-2 pos-absolute">
+                <img
+                  src="./assets/img/brand/logo-light.png"
+                  class="header-brand-img mb-4"
+                  alt="logo"
+                  style="width: 134px; height: 37px"
+                />
+                <div class="clearfix"></div>
+                <img
+                  src="./assets/img/svgs/user.svg"
+                  class="ht-100 mb-0"
+                  alt="user"
+                />
+                <h5 class="mt-4 text-white">Create Your Account</h5>
+                <span class="tx-white-6 tx-13 mb-5 mt-xl-0"
+                  >Sign up to create, discover and connect with the primmax
+                  community</span
+                >
+              </div>
+            </div>
+            <div class="col-lg-7 col-xl-8 col-xs-12 col-sm-12 login_form">
+              <div class="container-fluid">
+                <div class="row row-sm">
+                  <div class="card-body mt-2 mb-2">
+                    <img
+                      src="./assets/img/brand/logo.png"
+                      class="
+                        d-lg-none
+                        header-brand-img
+                        text-start
+                        float-start
+                        mb-4
+                      "
+                      alt="logo"
+                    />
+                    <div class="clearfix"></div>
+                    <h5 class="text-start mb-4">Sign up for Free</h5>
+                    <!-- <p class="mb-4 text-muted tx-13 ms-0 text-start">
+                      It's free to signup and only takes a minute.
+                    </p> -->
+                    <form
+                      class="row justify-content-center"
+                      [formGroup]="form"
+                      (ngSubmit)="onSubmit()"
+                    >
+                      <div class="col-md-6">
+                        <!-- <div class="form-group text-start input-effect">
+                          <label>Name</label>
+                          <input
+                            class="form-control effect"
+                            placeholder="Enter your Name"
+                            type="text"
+                            formControlName="name"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.name.errors?.required &&
+                                (formControl.name.dirty ||
+                                  formControl.name.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                        <div class="form-group text-start">
+                          <label>Email</label>
+                          <input
+                            class="form-control"
+                            placeholder="Enter your Email"
+                            type="email"
+                            formControlName="email"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.email.errors?.required &&
+                                (formControl.email.dirty ||
+                                  formControl.email.touched)
+                              "
+                            >
+                              Please enter valid email
+                            </div>
+                          </span>
+                        </div>
+                        <div class="form-group text-start">
+                          <label>Password</label>
+                          <input
+                            class="form-control"
+                            placeholder="Create password"
+                            type="text"
+                            formControlName="password"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.password.errors?.required &&
+                                (formControl.password.dirty ||
+                                  formControl.password.touched)
+                              "
+                            >
+                              Password Input
+                            </div>
+                          </span>
+                        </div>
+                        <!-- <div class="form-group text-start">
+                          <label>Identification</label>
+                          <select
+                            class="form-control"
+                            formControlName="identification_type"
+                          >
+                            <option label="Select Identification"></option>
+                            <option value="1">Governement Id</option>
+                            <option value="2">Passport</option>
+                            <option value="3">Driving license</option>
+                          </select>
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.identification_type.errors
+                                  ?.required &&
+                                (formControl.identification_type.dirty ||
+                                  formControl.identification_type.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                        <!-- <div class="form-group text-start">
+                          <label>Date of birth</label>
+                          <input
+                            class="form-control"
+                            placeholder="Choose date"
+                            type="Date"
+                            formControlName="dob"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.dob.errors?.required &&
+                                (formControl.dob.dirty ||
+                                  formControl.dob.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div>
+                        <div class="form-group text-start">
+                          <label>Country</label>
+                          <select
+                            class="form-control"
+                            formControlName="country"
+                          >
+                            <option label="Select country"></option>
+                            <option *ngFor="let item of ddpValues" [value]="item.name">{{ item.name }}</option>
+                          </select>
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.country.errors?.required &&
+                                (formControl.country.dirty ||
+                                  formControl.country.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group text-start">
+                          <label>User Name</label>
+                          <input
+                            class="form-control"
+                            placeholder="Enter your User Name"
+                            type="text"
+                            formControlName="username"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.username.errors?.required &&
+                                (formControl.username.dirty ||
+                                  formControl.username.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div>
+                        <!-- <div class="form-group text-start">
+                          <label>Mobile Number</label>
+                          <input
+                            class="form-control"
+                            placeholder="Enter your cell number"
+                            type="text"
+                            formControlName="mobile_number"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.mobile_number.errors?.required &&
+                                (formControl.mobile_number.dirty ||
+                                  formControl.mobile_number.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                        <!-- <div class="form-group text-start">
+                          <label>Identification No</label>
+                          <input
+                            class="form-control"
+                            placeholder="Enter your Identification No"
+                            type="text"
+                            formControlName="identification_number"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.identification_number.errors
+                                  ?.required &&
+                                (formControl.identification_number.dirty ||
+                                  formControl.identification_number.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                        <!-- <div class="form-group text-start">
+                          <label>Gender</label>
+                          <select class="form-control" formControlName="gender">
+                            <option label="Select Gender"></option>
+                            <option value="m">Male</option>
+                            <option value="f">Female</option>
+                            <option value="o">Other</option>
+                          </select>
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.gender.errors?.required &&
+                                (formControl.gender.dirty ||
+                                  formControl.gender.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                        <!-- <div class="form-group text-start">
+                          <label>Referral ID</label>
+                          <input
+                            class="form-control"
+                            placeholder="Enter Referral Id"
+                            type="text"
+                            formControlName="referral_id_used"
+                          />
+                          <span>
+                            <div
+                              class="text-danger"
+                              *ngIf="
+                                formControl.referral_id_used.errors?.required &&
+                                (formControl.referral_id_used.dirty ||
+                                  formControl.referral_id_used.touched)
+                              "
+                            >
+                              Required
+                            </div>
+                          </span>
+                        </div> -->
+                      </div>
+                      <div class="col-lg-6 col-xl-7">
+                        <button
+                          class="btn ripple btn-main-primary btn-block"
+                          type="submit"
+                          [disabled]="!form.valid"
+                        >
+                          Create Account
+                        </button>
+                      </div>
+                    </form>
+                    <div class=" text-start mt-3 ms-0">
+                      <p class="mb-0">
+                        Already have an account?
+                        <a (click)="navigateToPoint('/signin')">Sign In</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Row -->
+  </div>
+  <!-- End Page -->
+</div>

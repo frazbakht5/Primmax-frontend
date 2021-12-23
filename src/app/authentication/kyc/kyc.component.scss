@@ -1,0 +1,19 @@
+table{
+    width: 90%;
+    align-self: center;
+  }
+  .nav-item{
+    span{
+      color: white;
+    }
+    span:hover{
+      cursor: pointer;
+    }
+  }
+  .btnupdate{
+    margin-left: 40%;
+    margin-top: 5%;
+  }
+  .rejectedstyle{
+    display :disabled;
+  }

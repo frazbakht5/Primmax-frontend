@@ -64,6 +64,10 @@ export class SigninComponent implements OnInit {
               'primmax-accesstoken',
               response.data.accessToken
             );
+            localStorage.setItem(
+              'isAdmin',
+              'false'
+            );
             this.router.navigate(['/profile']);
           } else {
             this.commonService.failureToast('error', response.message);

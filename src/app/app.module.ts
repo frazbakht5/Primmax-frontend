@@ -12,12 +12,13 @@ import { NgxCaptchaModule } from 'ngx-captcha';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-
-
+import { KycComponent } from './authentication/kyc/kyc.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
     LandingpageComponent,
+    KycComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +30,7 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     AppRoutingModule,
     AuthenticationModule,
     ToastrModule.forRoot(),
+    BsDropdownModule.forRoot(),
     NgxSpinnerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },],

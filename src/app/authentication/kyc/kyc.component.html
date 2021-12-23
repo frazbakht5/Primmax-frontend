@@ -1,0 +1,121 @@
+<div class="main-body leftmenu">
+    <!-- Page -->
+    <div class="page">
+       <!-- Sidemenu -->
+       <div class="main-sidebar main-sidebar-sticky side-menu">
+        <div class="sidemenu-logo">
+          <a class="main-logo" href="index.html">
+            <img
+              src="./assets/img/brand/logo-light.png"
+              class="header-brand-img desktop-logo"
+              alt="logo"
+            />
+            <img
+              src="./assets/img/brand/icon-light.png"
+              class="header-brand-img icon-logo"
+              alt="logo"
+            />
+            <img
+              src="./assets/img/brand/logo.png"
+              class="header-brand-img desktop-logo theme-logo"
+              alt="logo"
+            />
+            <img
+              src="./assets/img/brand/icon.png"
+              class="header-brand-img icon-logo theme-logo"
+              alt="logo"
+            />
+          </a>
+        </div>
+        <div class="main-sidebar-body">
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link with-sub"
+                ><span class="shape1"></span><span class="shape2"></span
+                ><i class="sidemenu-icon"></i
+                ><span class="sidemenu-label" (click)="navigateToPoint('/profile')">Profile</span
+                ><i class="angle fe fe-chevron-right"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link with-sub"
+                ><span class="shape1"></span><span class="shape2"></span
+                ><i class="sidemenu-icon"></i
+                ><span class="sidemenu-label" (click)="kyc()">KYC</span
+                ><i class="angle fe fe-chevron-right"></i
+              ></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link with-sub"
+                ><span class="shape1"></span><span class="shape2"></span
+                ><i class="sidemenu-icon"></i
+                ><span class="sidemenu-label" (click)="logout()">logout</span></a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- End Sidemenu -->
+  
+      <!-- Main Content-->
+      <div class="main-content side-content pt-0">
+        <div class="container-fluid">
+          <div class="inner-body">
+            <div
+              class="main-content-body tab-pane p-4 border-top-0"
+              id="settings"
+            >
+            <div *ngIf="!isApproved"> 
+                <div class="alert alert-secondary" role="alert">
+                  KYC INCOMPETE/REJECTED
+                </div>
+            </div>
+            <div *ngIf="!isApproved">
+                <div class="alert alert-primary" role="alert">
+                  KYC APPROVED
+                </div>
+            <h2>KYC Upload</h2>
+            <form>
+                <div class="file-field md-form">
+                    <p>National ID/Passport Scan</p>
+                  <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+                    <!-- <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> -->
+                    <input type="file" mdbFileSelect >
+                    <span>Please upload a high quality scan of your National Id/Passport photo page.</span>
+                    <img
+                        src="./assets/img/national-card.jpeg"
+                        class="header-brand-img icon-logo theme-logo"
+                        alt="logo"
+                        />
+                  </div>
+                  <!-- <div class="file-path-wrapper"> -->
+                    <!-- <input class="file-path" type="text" placeholder="Upload your file" [value]="showFiles()"> -->
+                    <!-- <input class="file-path" type="text" placeholder="Upload your file" >
+                  </div> -->
+                </div>
+                <br /><br />
+                <div class="file-field md-form">
+                    <p>Upload a Selfie with your National Id/Passport:</p>
+                  <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
+                    <!-- <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> -->
+                    <input type="file" mdbFileSelect >
+                    <span>Please upload a high quality scan of your National Id/Passport photo page.</span>
+                  </div>
+                  <!-- <div class="file-path-wrapper"> -->
+                    <!-- <input class="file-path" type="text" placeholder="Upload your file" [value]="showFiles()"> -->
+                    <!-- <input class="file-path" type="text" placeholder="Upload your file" >
+                  </div> -->
+                </div>
+                <button type="button" class="btn btn-success btnupdate" (click)="update()">Update</button>
+
+              </form>
+
+            </div>
+          
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

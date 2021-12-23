@@ -4,3 +4,6 @@
 .form-control {
     padding-right: 12px !important;
 }
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
