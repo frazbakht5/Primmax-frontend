@@ -44,5 +44,15 @@
 
   <!-- Custom js -->
   <script src="./assets/js/custom.js"></script>
+
+  <script>
+    setTimeout(function () {
+        var dd = $('dd');
+        dd.filter(':nth-child(n+3)').hide();
+        $('dl').on('click', 'dt', function () {
+            $(this).next().slideDown(500).siblings('dd').slideUp(500);
+        })
+    }, 1000)
+  </script>
 </body>
 </html>

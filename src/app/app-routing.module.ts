@@ -9,10 +9,16 @@ import { SetPasswordComponent } from './authentication/set-password/set-password
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { UserBalanceComponent } from './authentication/userbalance/userbalance.component';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'landingpage',
+    pathMatch: 'full',
+  },
+  {
+    path: 'signin',
     redirectTo: 'signin',
     pathMatch: 'full',
   },
@@ -52,6 +58,10 @@ const routes: Routes = [
   {
     path: 'admin/login',
     component: AdminLoginComponent,
+  },
+  {
+    path: 'landingpage',
+    component: LandingpageComponent,
   },
 ];
 

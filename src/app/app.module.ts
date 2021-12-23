@@ -11,11 +11,13 @@ import { ApiInterceptor } from 'src/shared/interceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LandingpageComponent } from './landingpage/landingpage.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    LandingpageComponent,
   ],
   imports: [
     BrowserModule,
