@@ -36,3 +36,29 @@ a {
   cursor: pointer;
   color: #0a58ca !important;
 }
+
+#footer {
+  background: #0d182d;
+  padding: 30px 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.hero-container{
+  h1{
+    position: absolute;
+    color: white;
+    left: 35%;
+    top: 40%;
+  }
+  h2{
+    @extend h1;
+    top: 46%
+  }
+}
+
+#footer{
+  .container{
+    text-align: center;
+  }
+}

@@ -65,6 +65,10 @@ export class AdminLoginComponent implements OnInit {
               'primmax-accesstoken',
               response.data.accessToken
             );
+            localStorage.setItem(
+              'isAdmin',
+              'true'
+            );
             this.router.navigate(['/userbalance']);
           } else {
             this.commonService.failureToast('error', response.message);
