@@ -62,9 +62,10 @@
                             placeholder="Enter your email"
                             type="email"
                             formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && formControl.email.errors }"
                           />
                           <span>
-                            <div class="text-danger" *ngIf="formControl.email.errors?.required && (formControl.email.dirty || formControl.email.touched)">Please enter valid email</div>
+                            <div class="text-danger" *ngIf="submitted && formControl.email.errors && (formControl.email.dirty || formControl.email.touched)">Please enter valid email</div>
                           </span>
                         </div>
                         <div class="form-group text-start">
@@ -74,9 +75,10 @@
                             placeholder="Enter your password"
                             type="password"
                             formControlName="password"
+                            [ngClass]="{ 'is-invalid': submitted && formControl.password.errors }"
                           />
                           <span>
-                            <div class="text-danger" *ngIf="formControl.password.errors?.required && (formControl.password.dirty || formControl.password.touched)">Required</div>
+                            <div class="text-danger" *ngIf="submitted && formControl.password.errors && (formControl.password.dirty || formControl.password.touched)">Required / Invalid Password</div>
                           </span>
                         </div>
                         <button class="btn ripple btn-main-primary btn-block" type="submit">

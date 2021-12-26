@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { CommonService } from 'src/services/common.service';
@@ -7,11 +12,11 @@ import { CommonService } from 'src/services/common.service';
 @Component({
   selector: 'app-admin-login',
   templateUrl: './admin-login.component.html',
-  styleUrls: ['./admin-login.component.scss']
+  styleUrls: ['./admin-login.component.scss'],
 })
 export class AdminLoginComponent implements OnInit {
-
   public form: FormGroup;
+  public submitted: Boolean = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -30,18 +35,14 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
     // this.commonService.successToast("sdfsdf","sdfsdf")
     this.form = this.fb.group({
-      email: [
-        '',
-        {
-          validators: [Validators.required, Validators.email],
-        },
-      ],
-      password: [
-        '',
-        {
-          validators: [Validators.required],
-        },
-      ],
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 
@@ -55,7 +56,10 @@ export class AdminLoginComponent implements OnInit {
   }
   public onSubmit() {
     console.log(this.form.value);
-    if (this.form.valid) {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    } else {
       this.api
         .httpPost('user/adminlogin', this.form.value)
         .subscribe((response: any) => {
@@ -65,10 +69,7 @@ export class AdminLoginComponent implements OnInit {
               'primmax-accesstoken',
               response.data.accessToken
             );
-            localStorage.setItem(
-              'isAdmin',
-              'true'
-            );
+            localStorage.setItem('isAdmin', 'true');
             this.router.navigate(['/userbalance']);
           } else {
             this.commonService.failureToast('error', response.message);
@@ -79,5 +80,4 @@ export class AdminLoginComponent implements OnInit {
   get formControl() {
     return this.form.controls;
   }
-
 }
