@@ -28,9 +28,20 @@ export class UserBalanceComponent implements OnInit {
     // }
     this.getUserData();
   }
-  public logout() {
-    localStorage.removeItem('primmax-accesstoken');
-    this.router.navigate(['/signin']);
+  public async logout() {
+    if (localStorage.getItem('isAdmin') == 'true') {
+      // await this.api.httpPut('user/adminlogout', {}).subscribe((data) => {
+        this.router.navigate(['admin/login']);
+        localStorage.removeItem('primmax-accesstoken');
+        return;
+      // });
+    } else {
+      // await this.api.httpPut('user/logout', {}).subscribe((data) => {
+        this.router.navigate(['/signin']);
+        localStorage.removeItem('primmax-accesstoken');
+        return;
+      // });
+    }
   }
 
   public userbalance() {
@@ -38,7 +49,7 @@ export class UserBalanceComponent implements OnInit {
   }
 
   public profile() {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['admin/profile']);
   }
 
   changeFn(event: any) {
@@ -73,9 +84,11 @@ export class UserBalanceComponent implements OnInit {
         if (response && response.code === 200) {
           // console.log("🚀 ~ file: userbalance.component.ts ~ line 70 ~ UserBalanceComponent ~ .subscribe ~ response", response)
           const { data } = response;
-          let id = data[1][0]?.id
-          let balance = data[1][0]?.balance
-          this.UserData = this.UserData.map((item:any)=>this.updateArray(item, id, balance));
+          let id = data[1][0]?.id;
+          let balance = data[1][0]?.balance;
+          this.UserData = this.UserData.map((item: any) =>
+            this.updateArray(item, id, balance)
+          );
           this.commonService.hideSpinner();
         } else {
           this.commonService.failureToast('error', response.message);
@@ -84,10 +97,8 @@ export class UserBalanceComponent implements OnInit {
       });
   }
 
-  updateArray(p: any, id:any, balance:any){
-    return p.id === id
-    ? { ...p, balance: balance}
-    : p;
+  updateArray(p: any, id: any, balance: any) {
+    return p.id === id ? { ...p, balance: balance } : p;
   }
 
   subBalance(row: any) {
@@ -102,9 +113,11 @@ export class UserBalanceComponent implements OnInit {
       .subscribe((response: any) => {
         if (response && response.code === 200) {
           const { data } = response;
-          let id = data[1][0]?.id
-          let balance = data[1][0]?.balance
-          this.UserData = this.UserData.map((item:any)=>this.updateArray(item, id, balance));
+          let id = data[1][0]?.id;
+          let balance = data[1][0]?.balance;
+          this.UserData = this.UserData.map((item: any) =>
+            this.updateArray(item, id, balance)
+          );
           this.commonService.hideSpinner();
         } else {
           this.commonService.failureToast('error', response.message);

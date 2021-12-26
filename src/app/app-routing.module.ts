@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from 'src/guards/login.guard';
 import { AdminLoginComponent } from './authentication/admin-login/admin-login.component';
 import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 import { EmailVerificationComponent } from './authentication/email-verification/email-verification.component';
@@ -51,10 +52,12 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'userbalance',
     component: UserBalanceComponent,
+    canActivate: [LoginGuard]
   },
   {
     path: 'admin/login',
@@ -67,7 +70,13 @@ const routes: Routes = [
   {
     path: 'kyc',
     component: KycComponent,
+    canActivate: [LoginGuard]
   },
+  {
+    path: 'admin/profile',
+    component: ProfileComponent,
+    canActivate: [LoginGuard]
+  }
 ];
 
 @NgModule({

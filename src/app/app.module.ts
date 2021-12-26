@@ -14,6 +14,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { KycComponent } from './authentication/kyc/kyc.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { LoginGuard } from 'src/guards/login.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     BsDropdownModule.forRoot(),
     NgxSpinnerModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
+    { provide: LoginGuard, useClass: LoginGuard }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

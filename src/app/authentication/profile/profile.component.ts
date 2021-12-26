@@ -67,9 +67,20 @@ export class ProfileComponent implements OnInit {
   /**
    * logout
    */
-  public logout() {
-    localStorage.removeItem('primmax-accesstoken');
-    this.router.navigate(['/signin']);
+  public async logout() {
+    if (localStorage.getItem('isAdmin') == 'true') {
+      // await this.api.httpPut('user/adminlogout', {}).subscribe((data) => {
+        this.router.navigate(['admin/login']);
+        localStorage.removeItem('primmax-accesstoken');
+        return;
+      // });
+    }else{
+      // await this.api.httpPut('user/logout', {}).subscribe((data) => {
+        this.router.navigate(['/signin']);
+        localStorage.removeItem('primmax-accesstoken');
+        return;
+      // });
+    }
   }
 
   /**
