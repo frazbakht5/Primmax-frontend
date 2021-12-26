@@ -63,3 +63,4 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+ (window as any).global.util = (window as any).global.util || require("util").util;

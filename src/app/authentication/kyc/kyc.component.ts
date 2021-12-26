@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { CommonService } from 'src/services/common.service';
-
+import * as AWS from "aws-sdk";
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'kyc',
   templateUrl: './kyc.component.html',
@@ -12,6 +13,9 @@ import { CommonService } from 'src/services/common.service';
 export class KycComponent implements OnInit {
   public form: FormGroup;
   public isApproved = false;
+    selectedFileSrc: any;
+    imageFileIsTooBig: boolean;
+    uploadImageLabel: string;
 
   constructor(
     private router: Router,
@@ -64,7 +68,38 @@ export class KycComponent implements OnInit {
       }
     });
   }
-  public update() {}
+  public update() {
+    AWS.config.update({
+        accessKeyId: environment.S3PicturesAccessKey,
+        secretAccessKey: environment.S3PicturesSecretKey,
+        region: environment.region,
+      });
+  
+      console.log("AWS configured.");
+  
+      const s3 = new AWS.S3();
+      console.log("s3 variable created.");
+  }
+
+  changeImage(imageInput: any) {
+    const file: File = imageInput.files[0];
+    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(2)} MB)`;
+    if (file.size > 1048576) {
+      this.imageFileIsTooBig = true;
+    } else {
+      this.imageFileIsTooBig = false;
+      const reader = new FileReader();
+
+      reader.addEventListener('load', (event: any) => {
+        this.selectedFileSrc = event.target.result;
+        
+      });
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    }
+  }
 
   public onSubmit() {
     if (this.form.valid) {
