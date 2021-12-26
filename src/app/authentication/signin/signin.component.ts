@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { CommonService } from 'src/services/common.service';
@@ -11,6 +16,7 @@ import { CommonService } from 'src/services/common.service';
 })
 export class SigninComponent implements OnInit {
   public form: FormGroup;
+  submitted: Boolean = false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -29,18 +35,14 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     // this.commonService.successToast("sdfsdf","sdfsdf")
     this.form = this.fb.group({
-      email: [
-        '',
-        {
-          validators: [Validators.required, Validators.email],
-        },
-      ],
-      password: [
-        '',
-        {
-          validators: [Validators.required],
-        },
-      ],
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 
@@ -54,7 +56,10 @@ export class SigninComponent implements OnInit {
   }
   public onSubmit() {
     console.log(this.form.value);
-    if (this.form.valid) {
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    } else {
       this.api
         .httpPost('user/login', this.form.value)
         .subscribe((response: any) => {
@@ -64,10 +69,7 @@ export class SigninComponent implements OnInit {
               'primmax-accesstoken',
               response.data.accessToken
             );
-            localStorage.setItem(
-              'isAdmin',
-              'false'
-            );
+            localStorage.setItem('isAdmin', 'false');
             this.router.navigate(['/profile']);
           } else {
             this.commonService.failureToast('error', response.message);
