@@ -65,11 +65,13 @@ export class SigninComponent implements OnInit {
         .subscribe((response: any) => {
           this.commonService.hideSpinner();
           if (response && response.code === 200) {
+            console.log("🚀 ~ file: signin.component.ts ~ line 68 ~ SigninComponent ~ .subscribe ~ response", response)
             localStorage.setItem(
               'primmax-accesstoken',
               response.data.accessToken
             );
             localStorage.setItem('isAdmin', 'false');
+            localStorage.setItem('userId', response.data.userId);
             this.router.navigate(['/profile']);
           } else {
             this.commonService.failureToast('error', response.message);

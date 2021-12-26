@@ -3,8 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/services/api.service';
 import { CommonService } from 'src/services/common.service';
-import * as AWS from "aws-sdk";
+import * as AWS from 'aws-sdk';
 import { environment } from 'src/environments/environment';
+import * as fs from 'fs';
 @Component({
   selector: 'kyc',
   templateUrl: './kyc.component.html',
@@ -13,16 +14,25 @@ import { environment } from 'src/environments/environment';
 export class KycComponent implements OnInit {
   public form: FormGroup;
   public isApproved = false;
-    selectedFileSrc: any;
-    imageFileIsTooBig: boolean;
-    uploadImageLabel: string;
-
+  selectedFileSrc: any;
+  selectedFileSrcSelfie:any;
+  imageFileIsTooBig: boolean;
+  uploadImageLabel: string;
+  selectedFile: ImageSnippet;
+  selectedFileSelfie: ImageSnippet;
+  NICImage: File;
+  SelfieImage: File;
   constructor(
     private router: Router,
     private fb: FormBuilder,
     private commonService: CommonService,
     private api: ApiService
   ) {
+    AWS.config.update({
+      accessKeyId: environment.S3PicturesAccessKey,
+      secretAccessKey: environment.S3PicturesSecretKey,
+      region: environment.region,
+    });
     this.getUserDetail();
   }
 
@@ -38,17 +48,17 @@ export class KycComponent implements OnInit {
 
   public async logout() {
     if (localStorage.getItem('isAdmin') == 'true') {
-    //   await this.api.httpPut('user/adminlogout', {}).subscribe((data) => {
-        this.router.navigate(['admin/login']);
-        localStorage.removeItem('primmax-accesstoken');
-        return;
-    //   });
+      //   await this.api.httpPut('user/adminlogout', {}).subscribe((data) => {
+      this.router.navigate(['admin/login']);
+      localStorage.removeItem('primmax-accesstoken');
+      return;
+      //   });
     } else {
-    //   await this.api.httpPut('user/logout', {}).subscribe((data) => {
-        this.router.navigate(['/signin']);
-        localStorage.removeItem('primmax-accesstoken');
-        return;
-    //   });
+      //   await this.api.httpPut('user/logout', {}).subscribe((data) => {
+      this.router.navigate(['/signin']);
+      localStorage.removeItem('primmax-accesstoken');
+      return;
+      //   });
     }
   }
 
@@ -68,37 +78,93 @@ export class KycComponent implements OnInit {
       }
     });
   }
-  public update() {
-    AWS.config.update({
-        accessKeyId: environment.S3PicturesAccessKey,
-        secretAccessKey: environment.S3PicturesSecretKey,
-        region: environment.region,
+
+  async uploadSelfie(){
+    const reader = new FileReader();
+    return new Promise<any>((resolve, reject) =>{
+      reader.addEventListener('load', async (event: any) => {
+        console.log('event.target.result', event.target);
+        this.selectedFileSrcSelfie = event.target.result;
+        let userId = localStorage.getItem('userId');
+        let ext = this.SelfieImage.type.split('/');
+        let fileNameId = '' + userId + '-selfie.' + ext[1];
+        const s3 = new AWS.S3();
+        this.selectedFileSelfie = new ImageSnippet(
+          this.selectedFileSrcSelfie,
+          this.SelfieImage
+        );
+        await s3
+          .upload({
+            Bucket: 'primmax-data',
+            Key: `KYC/${userId}/${fileNameId}`,
+            Body: this.selectedFileSelfie.file,
+            ContentType: 'image/jpeg',
+          })
+          .promise();
+          resolve(1);
       });
-  
-      console.log("AWS configured.");
-  
-      const s3 = new AWS.S3();
-      console.log("s3 variable created.");
+      reader.readAsDataURL(this.SelfieImage);
+    })
   }
 
-  changeImage(imageInput: any) {
+  async uploadNIC() {
+    const reader = new FileReader();
+    return new Promise<any>((resolve, reject)=>{
+      reader.addEventListener('load', async (event: any) => {
+        console.log('event.target.result', event.target);
+        this.selectedFileSrc = event.target.result;
+        let userId = localStorage.getItem('userId');
+        let ext = this.NICImage.type.split('/');
+        let fileNameId = '' + userId + '-id.' + ext[1];
+        const s3 = new AWS.S3();
+        this.selectedFile = new ImageSnippet(this.selectedFileSrc, this.NICImage);
+        await s3
+          .upload({
+            Bucket: 'primmax-data',
+            Key: `KYC/${userId}/${fileNameId}`,
+            Body: this.selectedFile.file,
+            ContentType: 'image/jpeg',
+          })
+          .promise();
+          resolve(1);
+      });
+      reader.readAsDataURL(this.NICImage);
+    })
+  }
+
+
+  
+  public async update() {
+    await this.uploadNIC();
+    await this.uploadSelfie();
+  }
+
+  changeImageNIC(imageInput: any) {
     const file: File = imageInput.files[0];
-    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(2)} MB)`;
+    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
+      2
+    )} MB)`;
     if (file.size > 1048576) {
       this.imageFileIsTooBig = true;
     } else {
       this.imageFileIsTooBig = false;
-      const reader = new FileReader();
-
-      reader.addEventListener('load', (event: any) => {
-        this.selectedFileSrc = event.target.result;
-        
-      });
-
-      if (file) {
-        reader.readAsDataURL(file);
-      }
     }
+
+    this.NICImage = file;
+  }
+
+  changeImageSelfie(imageInput: any) {
+    const file: File = imageInput.files[0];
+    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
+      2
+    )} MB)`;
+    if (file.size > 1048576) {
+      this.imageFileIsTooBig = true;
+    } else {
+      this.imageFileIsTooBig = false;
+    }
+
+    this.SelfieImage = file;
   }
 
   public onSubmit() {
@@ -125,4 +191,8 @@ export class KycComponent implements OnInit {
   get formControl() {
     return this.form.controls;
   }
+}
+
+class ImageSnippet {
+  constructor(public src: string, public file: File) {}
 }

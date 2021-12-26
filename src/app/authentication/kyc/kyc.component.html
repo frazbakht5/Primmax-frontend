@@ -80,7 +80,7 @@
                     <p>National ID/Passport Scan</p>
                   <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
                     <!-- <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> -->
-                    <input #imageInput type="file" mdbFileSelect (change)="changeImage(imageInput)">
+                    <input #imageInput type="file" mdbFileSelect (change)="changeImageNIC(imageInput)">
                     <span>Please upload a high quality scan of your selfie with your National Id/Passport.</span>
                     <img
                         src="./assets/img/national-card.jpeg"
@@ -98,7 +98,7 @@
                     <p>Upload a Selfie with your National Id/Passport:</p>
                   <div mdbBtn color="primary" size="sm" class="waves-light" mdbWavesEffect>
                     <!-- <input type="file" mdbFileSelect (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput"> -->
-                    <input type="file" mdbFileSelect >
+                    <input #imageSelfie type="file"  (change)="changeImageSelfie(imageSelfie)">
                     <span>Please upload a high quality scan of your selfie with your National Id/Passport.</span>
                   </div>
                   <!-- <div class="file-path-wrapper"> -->
