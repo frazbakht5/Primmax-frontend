@@ -8,13 +8,12 @@ import { environment } from 'src/environments/environment';
 import * as fs from 'fs';
 @Component({
   selector: 'kyc',
-  templateUrl: './kyc.component.html',
-  styleUrls: ['./kyc.component.scss'],
+  templateUrl: './download.component.html',
+  styleUrls: ['./download.component.scss'],
 })
-export class KycComponent implements OnInit {
+export class DownloadComponent implements OnInit {
   public form: FormGroup;
   public isApproved = false;
-  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   selectedFileSrc: any;
   selectedFileSrcSelfie: any;
   imageFileIsTooBig: boolean;
@@ -23,6 +22,7 @@ export class KycComponent implements OnInit {
   selectedFileSelfie: ImageSnippet;
   NICImage: File;
   SelfieImage: File;
+  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -111,6 +111,7 @@ export class KycComponent implements OnInit {
     const reader = new FileReader();
     return new Promise<any>((resolve, reject) => {
       reader.addEventListener('load', async (event: any) => {
+        console.log('event.target.result', event.target);
         this.selectedFileSrcSelfie = event.target.result;
         let userId = localStorage.getItem('userId');
         let ext = this.SelfieImage.type.split('/');
@@ -138,6 +139,7 @@ export class KycComponent implements OnInit {
     const reader = new FileReader();
     return new Promise<any>((resolve, reject) => {
       reader.addEventListener('load', async (event: any) => {
+        console.log('event.target.result', event.target);
         this.selectedFileSrc = event.target.result;
         let userId = localStorage.getItem('userId');
         let ext = this.NICImage.type.split('/');
@@ -170,15 +172,35 @@ export class KycComponent implements OnInit {
       this.commonService.hideSpinner();
       this.commonService.failureToast("Upload Error", "Something went wrong while uploading");
     }
+
+
   }
 
   changeImageNIC(imageInput: any) {
     const file: File = imageInput.files[0];
+    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
+      2
+    )} MB)`;
+    if (file.size > 1048576) {
+      this.imageFileIsTooBig = true;
+    } else {
+      this.imageFileIsTooBig = false;
+    }
+
     this.NICImage = file;
   }
 
   changeImageSelfie(imageInput: any) {
     const file: File = imageInput.files[0];
+    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
+      2
+    )} MB)`;
+    if (file.size > 1048576) {
+      this.imageFileIsTooBig = true;
+    } else {
+      this.imageFileIsTooBig = false;
+    }
+
     this.SelfieImage = file;
   }
 

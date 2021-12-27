@@ -12,6 +12,15 @@ import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { UserBalanceComponent } from './authentication/userbalance/userbalance.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import { BuyPrimmComponent } from './authentication/buyprimm/buyprimm.component';
+import { CryptoWalletComponent } from './authentication/cryptowallet/cryptowallet.component';
+import { DownloadComponent } from './authentication/download/download.component';
+import { NewsLetterComponent } from './authentication/newsletter/newsletter.component';
+import { PrimmWalletComponent } from './authentication/primmwallet/primmwallet.component';
+import { ReferralComponent } from './authentication/referral/referral.component';
+import { StakingComponent } from './authentication/staking/staking.component';
+import { SupportComponent } from './authentication/support/support.component';
+import { SwapComponent } from './authentication/swap/swap.component';
 
 const routes: Routes = [
   {
@@ -73,6 +82,51 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
+    path: 'user/buyprimm',
+    component: BuyPrimmComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/cryptowalet',
+    component: CryptoWalletComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/primmwallet',
+    component: PrimmWalletComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/staking',
+    component: StakingComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/referral',
+    component: ReferralComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/newsletter',
+    component: NewsLetterComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/download',
+    component: DownloadComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/support',
+    component: SupportComponent,
+    canActivate: [LoginGuard]
+  },
+  {
+    path: 'user/swap',
+    component: SwapComponent,
+    canActivate: [LoginGuard]
+  },
+  {
     path: 'admin/profile',
     component: ProfileComponent,
     canActivate: [LoginGuard]
@@ -83,4 +137,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -12,6 +12,16 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { UserBalanceComponent } from './userbalance/userbalance.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { BuyPrimmComponent } from './buyprimm/buyprimm.component';
+import { CryptoWalletComponent } from './cryptowallet/cryptowallet.component';
+import { DownloadComponent } from './download/download.component';
+import { NewsLetterComponent } from './newsletter/newsletter.component';
+import { PrimmWalletComponent } from './primmwallet/primmwallet.component';
+import { ReferralComponent } from './referral/referral.component';
+import { StakingComponent } from './staking/staking.component';
+import { SupportComponent } from './support/support.component';
+import { SwapComponent } from './swap/swap.component';
+
 
 @NgModule({
   declarations: [
@@ -24,10 +34,19 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
     ChangePasswordComponent,
     SetPasswordComponent,
     UserBalanceComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    BuyPrimmComponent,
+    CryptoWalletComponent,
+    DownloadComponent,
+    NewsLetterComponent,
+    PrimmWalletComponent,
+    ReferralComponent,
+    StakingComponent,
+    SupportComponent,
+    SwapComponent
   ],
   imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [],
 })
-export class AuthenticationModule {}
+export class AuthenticationModule { }
