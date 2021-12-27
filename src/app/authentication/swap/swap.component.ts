@@ -8,13 +8,12 @@ import { environment } from 'src/environments/environment';
 import * as fs from 'fs';
 @Component({
   selector: 'kyc',
-  templateUrl: './kyc.component.html',
-  styleUrls: ['./kyc.component.scss'],
+  templateUrl: './swap.component.html',
+  styleUrls: ['./swap.component.scss'],
 })
-export class KycComponent implements OnInit {
+export class SwapComponent implements OnInit {
   public form: FormGroup;
   public isApproved = false;
-  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   selectedFileSrc: any;
   selectedFileSrcSelfie: any;
   imageFileIsTooBig: boolean;
@@ -23,6 +22,7 @@ export class KycComponent implements OnInit {
   selectedFileSelfie: ImageSnippet;
   NICImage: File;
   SelfieImage: File;
+  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -72,6 +72,9 @@ export class KycComponent implements OnInit {
   public buyprimm() {
     this.router.navigate(['/user/buyprimm']);
   }
+  public swap() {
+    this.router.navigate(['/user/swap']);
+  }
   public cryptowalet() {
     this.router.navigate(['/user/cryptowalet']);
   }
@@ -92,9 +95,6 @@ export class KycComponent implements OnInit {
   }
   public support() {
     this.router.navigate(['/user/support']);
-  }
-  public swap() {
-    this.router.navigate(['/user/swap']);
   }
   public getUserDetail() {
     this.api.httpGet('user').subscribe((response: any) => {

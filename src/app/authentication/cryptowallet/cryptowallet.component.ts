@@ -8,13 +8,12 @@ import { environment } from 'src/environments/environment';
 import * as fs from 'fs';
 @Component({
   selector: 'kyc',
-  templateUrl: './kyc.component.html',
-  styleUrls: ['./kyc.component.scss'],
+  templateUrl: './cryptowallet.component.html',
+  styleUrls: ['./cryptowallet.component.scss'],
 })
-export class KycComponent implements OnInit {
+export class CryptoWalletComponent implements OnInit {
   public form: FormGroup;
   public isApproved = false;
-  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   selectedFileSrc: any;
   selectedFileSrcSelfie: any;
   imageFileIsTooBig: boolean;
@@ -23,6 +22,7 @@ export class KycComponent implements OnInit {
   selectedFileSelfie: ImageSnippet;
   NICImage: File;
   SelfieImage: File;
+  public isAdmin = localStorage.getItem('isAdmin') === 'true' ? true : false;
   constructor(
     private router: Router,
     private fb: FormBuilder,

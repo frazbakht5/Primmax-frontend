@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private api: ApiService,
     private commonService: CommonService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -70,15 +70,15 @@ export class ProfileComponent implements OnInit {
   public async logout() {
     if (localStorage.getItem('isAdmin') == 'true') {
       // await this.api.httpPut('user/adminlogout', {}).subscribe((data) => {
-        this.router.navigate(['admin/login']);
-        localStorage.removeItem('primmax-accesstoken');
-        return;
+      this.router.navigate(['admin/login']);
+      localStorage.removeItem('primmax-accesstoken');
+      return;
       // });
-    }else{
+    } else {
       // await this.api.httpPut('user/logout', {}).subscribe((data) => {
-        this.router.navigate(['/signin']);
-        localStorage.removeItem('primmax-accesstoken');
-        return;
+      this.router.navigate(['/signin']);
+      localStorage.removeItem('primmax-accesstoken');
+      return;
       // });
     }
   }
@@ -145,5 +145,8 @@ export class ProfileComponent implements OnInit {
 
   public kyc() {
     this.router.navigate(['/kyc']);
+  }
+  public buyprimm() {
+    this.router.navigate(['/user/buyprimm']);
   }
 }
