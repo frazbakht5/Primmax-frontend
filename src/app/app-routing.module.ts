@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginGuard } from 'src/guards/login.guard';
+import { LoginGuard } from '../guards/login.guard';
 import { AdminLoginComponent } from './authentication/admin-login/admin-login.component';
 import { ChangePasswordComponent } from './authentication/change-password/change-password.component';
 import { EmailVerificationComponent } from './authentication/email-verification/email-verification.component';
 import { ForgetPasswordComponent } from './authentication/forget-password/forget-password.component';
-import { KycComponent } from './authentication/kyc/kyc.component';
+import { KycComponent } from '../../src/app/authentication/kyc/kyc.component';
 import { ProfileComponent } from './authentication/profile/profile.component';
 import { SetPasswordComponent } from './authentication/set-password/set-password.component';
 import { SigninComponent } from './authentication/signin/signin.component';

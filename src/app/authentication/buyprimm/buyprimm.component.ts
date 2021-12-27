@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from 'src/services/api.service';
-import { CommonService } from 'src/services/common.service';
+import { ApiService } from '../../../services/api.service';
+import { CommonService } from '../../../services/common.service';
 import * as AWS from 'aws-sdk';
-import { environment } from 'src/environments/environment';
-import * as fs from 'fs';
+import { environment } from '../../../environments/environment';
+
 @Component({
   selector: 'kyc',
   templateUrl: './buyprimm.component.html',
