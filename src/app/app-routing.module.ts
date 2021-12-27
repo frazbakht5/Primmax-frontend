@@ -87,7 +87,7 @@ const routes: Routes = [
     canActivate: [LoginGuard]
   },
   {
-    path: 'user/cryptowallet',
+    path: 'user/cryptowalet',
     component: CryptoWalletComponent,
     canActivate: [LoginGuard]
   },

@@ -149,4 +149,28 @@ export class ProfileComponent implements OnInit {
   public buyprimm() {
     this.router.navigate(['/user/buyprimm']);
   }
+  public cryptowalet() {
+    this.router.navigate(['/user/cryptowalet']);
+  }
+  public download() {
+    this.router.navigate(['/user/download']);
+  }
+  public newsletter() {
+    this.router.navigate(['/user/newsletter']);
+  }
+  public primmwallet() {
+    this.router.navigate(['/user/primmwallet']);
+  }
+  public referral() {
+    this.router.navigate(['/user/referral']);
+  }
+  public staking() {
+    this.router.navigate(['/user/staking']);
+  }
+  public support() {
+    this.router.navigate(['/user/support']);
+  }
+  public swap() {
+    this.router.navigate(['/user/swap']);
+  }
 }
