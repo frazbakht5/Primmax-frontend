@@ -11,14 +11,14 @@ import { ApiInterceptor } from 'src/shared/interceptor';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { LandingpageComponent } from './landingpage/landingpage.component';
+// import { LandingpageComponent } from './landingpage/landingpage.component';
 import { KycComponent } from './authentication/kyc/kyc.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { LoginGuard } from 'src/guards/login.guard';
 @NgModule({
   declarations: [
     AppComponent,
-    LandingpageComponent,
+    // LandingpageComponent,
     KycComponent
   ],
   imports: [
