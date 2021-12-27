@@ -83,7 +83,6 @@ export class KycComponent implements OnInit {
     const reader = new FileReader();
     return new Promise<any>((resolve, reject) =>{
       reader.addEventListener('load', async (event: any) => {
-        console.log('event.target.result', event.target);
         this.selectedFileSrcSelfie = event.target.result;
         let userId = localStorage.getItem('userId');
         let ext = this.SelfieImage.type.split('/');
@@ -111,7 +110,6 @@ export class KycComponent implements OnInit {
     const reader = new FileReader();
     return new Promise<any>((resolve, reject)=>{
       reader.addEventListener('load', async (event: any) => {
-        console.log('event.target.result', event.target);
         this.selectedFileSrc = event.target.result;
         let userId = localStorage.getItem('userId');
         let ext = this.NICImage.type.split('/');
@@ -144,35 +142,15 @@ export class KycComponent implements OnInit {
       this.commonService.hideSpinner();
       this.commonService.failureToast("Upload Error","Something went wrong while uploading");
     }
-
-
   }
 
   changeImageNIC(imageInput: any) {
     const file: File = imageInput.files[0];
-    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
-      2
-    )} MB)`;
-    if (file.size > 1048576) {
-      this.imageFileIsTooBig = true;
-    } else {
-      this.imageFileIsTooBig = false;
-    }
-
     this.NICImage = file;
   }
 
   changeImageSelfie(imageInput: any) {
     const file: File = imageInput.files[0];
-    this.uploadImageLabel = `${file.name} (${(file.size * 0.000001).toFixed(
-      2
-    )} MB)`;
-    if (file.size > 1048576) {
-      this.imageFileIsTooBig = true;
-    } else {
-      this.imageFileIsTooBig = false;
-    }
-
     this.SelfieImage = file;
   }
 
