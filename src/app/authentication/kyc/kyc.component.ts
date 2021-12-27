@@ -135,8 +135,17 @@ export class KycComponent implements OnInit {
 
   
   public async update() {
-    await this.uploadNIC();
-    await this.uploadSelfie();
+    this.commonService.showSpinner();
+    try {
+      await this.uploadNIC();
+      await this.uploadSelfie();
+      this.commonService.hideSpinner();
+    } catch (error) {
+      this.commonService.hideSpinner();
+      this.commonService.failureToast("Upload Error","Something went wrong while uploading");
+    }
+
+
   }
 
   changeImageNIC(imageInput: any) {
