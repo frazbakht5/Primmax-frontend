@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 // import { environment } from '../../../../../environments/environment';
 
 const environment = {
-  apiUrl: 'http://54.198.183.160:5000/api/',
+  apiUrl: 'http://18.142.45.123:5000/api/',
 }
 
 @Injectable({
