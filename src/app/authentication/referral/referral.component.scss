@@ -62,3 +62,14 @@ a {
     text-align: center;
   }
 }
+
+.referral-tree-invisible {
+  display: none;
+}
+
+.referral-tree ul,
+.referral-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}

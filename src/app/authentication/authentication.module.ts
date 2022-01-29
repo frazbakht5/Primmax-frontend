@@ -21,8 +21,10 @@ import { ReferralComponent } from './referral/referral.component';
 import { StakingComponent } from './staking/staking.component';
 import { SupportComponent } from './support/support.component';
 import { SwapComponent } from './swap/swap.component';
-
-
+import { MatButtonModule } from '@angular/material/button';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     SigninComponent,
@@ -43,10 +45,19 @@ import { SwapComponent } from './swap/swap.component';
     ReferralComponent,
     StakingComponent,
     SupportComponent,
-    SwapComponent
+    SwapComponent,
   ],
-  imports: [CommonModule, BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    CdkTreeModule,
+    MatTreeModule,
+    MatIconModule,
+  ],
   providers: [],
   bootstrap: [],
 })
-export class AuthenticationModule { }
+export class AuthenticationModule {}

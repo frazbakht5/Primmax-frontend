@@ -30,9 +30,9 @@ import { LoginGuard } from 'src/guards/login.guard';
     HttpClientModule,
     AppRoutingModule,
     AuthenticationModule,
+    NgxSpinnerModule,
     ToastrModule.forRoot(),
     BsDropdownModule.forRoot(),
-    NgxSpinnerModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
     { provide: LoginGuard, useClass: LoginGuard }],
