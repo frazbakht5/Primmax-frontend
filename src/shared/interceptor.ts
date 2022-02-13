@@ -30,16 +30,18 @@ export class ApiInterceptor implements HttpInterceptor {
       .pipe(
         map((event: HttpEvent<any>) => {
           if (event instanceof HttpResponse) {
+            if(event.body.code === 510){
+              localStorage.clear();
+              this.commonService.hideSpinner();
+              this.commonService.failureToast(event.body.message, 'Error');
+              this.router.navigate(['/signin']);
+              return false;
+            }
             if (event !== null && event.body.error) {
               if (event.body.error) {
                 return event;
               } else {
                 this.actionOnError(event.body.error, event.body.message);
-                console.log(
-                  'error in interceptor ===>',
-                  event.body.errr,
-                  event.body.message
-                );
                 return false;
               }
             }
